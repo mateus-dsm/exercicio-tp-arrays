@@ -1,5 +1,36 @@
 ﻿internal class Program
 {
+    static bool GameOver(int[,] jogoDaVelha)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (jogoDaVelha[i, 0] == jogoDaVelha[i, 1] && jogoDaVelha[i, 0] == jogoDaVelha[i, 2] && jogoDaVelha[i, 0] != 0)
+            {
+                Console.WriteLine($"O jogador {jogoDaVelha[i, 0]} ganhou!");
+                return true;
+            }
+        }
+        for (int j = 0; j < 3; j++)
+        {
+            if (jogoDaVelha[0, j] == jogoDaVelha[1, j] && jogoDaVelha[0, j] == jogoDaVelha[2, j] && jogoDaVelha[0, j] != 0)
+            {
+                Console.WriteLine($"O jogador {jogoDaVelha[0, j]} ganhou!");
+                return true;
+            }
+        }
+        if (jogoDaVelha[0, 0] == jogoDaVelha[1, 1] && jogoDaVelha[0, 0] == jogoDaVelha[2, 2] && jogoDaVelha[0, 0] != 0)
+        {
+            Console.WriteLine($"O jogador {jogoDaVelha[0, 0]} ganhou!");
+            return true;
+        }
+        else if (jogoDaVelha[0, 2] == jogoDaVelha[1, 1] && jogoDaVelha[0, 2] == jogoDaVelha[2, 0] && jogoDaVelha[0, 2] != 0)
+        {
+            Console.WriteLine($"O jogador {jogoDaVelha[0, 2]} ganhou!");
+            return true;
+        }
+        return false;
+    }
+
     static void Main(string[] args)
     {
         int[,] jogoDaVelha = new int[3, 3];
@@ -48,15 +79,7 @@
             Console.WriteLine($"{jogoDaVelha[1, 0]} {jogoDaVelha[1, 1]} {jogoDaVelha[1, 2]}");
             Console.WriteLine($"{jogoDaVelha[2, 0]} {jogoDaVelha[2, 1]} {jogoDaVelha[2, 2]}");
 
-            gameOver = true;
-            foreach(int elemento in jogoDaVelha)
-            {
-                if(elemento == 0)
-                {
-                    gameOver = false;
-                    break;
-                }
-            }
+            gameOver = GameOver(jogoDaVelha);
         }
     }
 }
